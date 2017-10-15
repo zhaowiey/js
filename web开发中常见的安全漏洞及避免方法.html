@@ -100,6 +100,32 @@
            source = source.Replace("0x", "0 x");
            return source;
        }
+       2、坚持使用参数化方式赋值
+       3、不要直接抛出异常的详细信息给用户，异常返回友好的页面，防止用户看到数据库的细节，关闭了Web.Config的CustomErrors的时候，可能就不会看到。
+         <system.web>
+              <compilation debug="true" targetframework="4.0" />
+         </system.web>
+       
+       
+       2、XSS又叫CSS--Cross Site Script 跨站脚本攻击
+     1、清理用户输入，过滤js代码，过滤特殊字符
+          [1] <>（尖括号）     [5] ;（分号）
+          [2] "（引号）           [6] ()（括号）
+          [3] '（单引号）         [7] &（& 符号）
+          [4] %（百分比符号）	[8] +（加号）
+     2、使用HttpUitility及AntiXSSLibrary类库中的方法对html代码进行处理
+
+           赋值不会弹框 this.lblName.Text = Encoder.HtmlEncode("<script>alert('OK');</script>");
+
+		编码方法	使用场景
+		HtmlEncode(String)	不受信任的HTML代码。
+		HtmlAttributeEncode(String)	不受信任的HTML属性
+		JavaScriptEncode(String)	不受信任的输入在JavaScript中使用
+		UrlEncode(String)	不受信任的URL
+		VisualBasicScriptEncode(String)	不受信任的输入在VBScript中使用
+		XmlEncode(String)	不受信任的输入用于XML输出
+		XmlAttributeEncode(String)	不 受信任的输入用作XML属性
+
 * */
 		</script>
 	</body>
